@@ -1,13 +1,13 @@
-import openai
+from openai import OpenAI
 
-openai.api_key = "YOUR_API_KEY"
+client = OpenAI(api_key="YOUR_API_KEY")
 
 def chatbot(prompt):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}]
     )
-    return response['choices'][0]['message']['content']
+    return response.choices[0].message.content
 
 while True:
     user_input = input("You: ")
